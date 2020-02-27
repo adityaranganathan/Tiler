@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Tiler</title>
+    <title>Tiler2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
+
 <body>
-    <h1 class="title">Tiler</h1>
-    <a class="port-link" target="_blank" href="https://aditya-r.com">aditya-r.com</a>
+    <h1 class="main-title">Tiler</h1>
 
-    <div class="controls">
-        <div class="timer" id="timer">00:00</div>
+    <label class="switch">
+        <input type="checkbox" class="theme-checkbox">
+        <span class="toggle round"></span>
+    </label>
+
+    <section class="timer-wrapper">
+        <p class="timer">
+            00:00
+        </p>
+    </section>
+
+    <section class="main-game-section">
+        <div class="main-game-board">
+        </div>
+    </section>
+
+    <div class="message-wrapper">
+        <p class="success">
+            Puzzle solved!
+        </p>
     </div>
 
-    <div class="game-holder">
-        <div class="main-game" id="board"></div>
-    </div>
+    <section class="controls">
+        <div class="slider-container">
+            <input type="range" min="3" max="10" value="3" class="slider" id="gridsize-slider">
+        </div>
+    </section>
 
-    <div class="controls">
-        <div class="button shadow" id="btn_new_game">Start</div>
-    </div>
 
-    <div class="controls">
-            <div class="button shadow small-btn" id="btn_easy">Easy</div>
-            <div class="button shadow small-btn" id="btn_medium">Medium</div>
-            <div class="button shadow small-btn" id="btn_hard">Hard</div>
-    </div>
-
-    <h2>Move Logs</h2>
-    <div class="controls" id="logs">
-    </div>
+    <script src="js/constants.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/main-game.js"></script>
+    <script src="js/input.js"></script>
 </body>
-<script src="js/constants.js"></script>
-<script src="js/movement.js"></script>
-<script src="js/game.js"></script>
-<script src="js/input.js"></script>
+
 </html>

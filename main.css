@@ -1,137 +1,214 @@
-:root{
-    --primary-color: #fff;
-    --primary-color-dark: #ffffff;
-    --background-color: #fff;
+:root {
+    --grid-size: 3;
+    --cell-size: 80;
+    --primary-color: rgba(0, 0, 0, 0.4);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --tile-color: white;
+    --background: white;
 }
 
-html, body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  margin: 0;
-  padding: 0;
-  background-image: var(--background-color);
-  font-family: 'Roboto', sans-serif;
-  font-size: 10px; 
-  height: 100%;
-  width: 100%;
+html {
+    background: var(--background);
+    font-size: 10px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
 
-.log{
-    font-size: 2rem;
-}
-
-.port-link{
-    font-size: 2rem;
-    text-decoration: none;
-    color:
-    rgba(0,0,0,0.4);
+body {
+    height: 100vh;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
     text-align: center;
-    display: block;
+    display: grid;
+    grid-template-rows: 10vh 10vh 55vh 15vh 10vh;
 }
-.title{
-    font-size: 7rem;
-    text-align: center;
+
+.main-title {
+    color: var(--primary-color);
+    font-size: 12vw;
     font-weight: 100;
-    color: #00000055;
-    margin-top:2rem;
-    margin-bottom: 1rem;;
+    letter-spacing: 5px;
+    margin: 3rem auto 0 auto;
+    padding: 1px;
 }
-h2{
-    font-size: 3rem;
+
+.timer {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    padding: 1rem;
+    margin: 4.5rem auto 0 auto;
+    line-height: 1;
+}
+
+.main-game-section {
     text-align: center;
-    font-weight: 300;
-    color: #00000055;
-    margin-bottom:0;
-}
-.game-holder {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.controls {
-    margin-top: auto;
-    text-align: center;
-    padding:2rem;
-}
-
-.shadow {
-    -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.18);
--moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.18);
-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.18);
-}
-
-.controls .button{
-    margin-right: 10px;
-    border-radius: 10px;
-    font-size: 2rem;
-    display: inline-block;
-    padding: 16px;
-    background: white;
-    color: rgba(0,0,0,0.4);
-    cursor: pointer;
-    transition: transform 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-.small-btn{
-    font-size: 1.5rem;
-    padding:10px;
-    line-height: 0.8;
-}
-.controls .button:hover{
-    transform: scale(1.1);
-    -webkit-box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18);
--moz-box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18);
-box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.18);
-}
-
-.timer{
-    font-size: 3rem;
-    font-weight: 100;
-    color: rgba(0,0,0,0.4);
-}
-
-
-.main-game{
-    margin: auto;
-    border-radius: 10px;
-    width: 400px;
-    height: 400px;
-    background: var(--primary-color);
+    padding: 0;
     position: relative;
 }
 
-.grid-cell {
+.main-game-board {
+    margin: auto;
+    height: 75vmin;
+    width: 75vmin;
     position: absolute;
-    top: 0px;
-    left: 0px;
-    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-game-board div {
+    height: var(--cell-size);
+    width: var(--cell-size);
+    background-color: var(--tile-color);
+    border-radius: calc(2rem/var(--grid-size));
+    box-shadow: 1px 1px 2px var(--shadow-color);
+    position: absolute;
+    transform: translate3d(0, 0, 0);
+    transition: transform 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.cell-text {
+    font-size: calc(var(--cell-size)*0.4);
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color);
+}
+
+.empty-cell {
+    opacity: 0.5;
+}
+
+.controls {
     text-align: center;
-    background-color: var(--primary-color-dark);
-    font-weight: 700;
-    color: #00000045;
-    will-change: left, top;
-    transition: top 300ms cubic-bezier(0.075, 0.82, 0.165, 1), left 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    padding: 1.5rem;
 }
 
-#logs{
-    display: flex;
-    flex-direction: column;
-    max-height: 10rem;
-    overflow: auto;
-    padding: 2rem;
+.success {
+    display: none;
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
 }
 
-.log{
-    color: #00000055;
+.slider-container {
+    width: 100%;
 }
 
-
-
-.to-right {
-    transform: translateX(100px);
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 70%;
+    height: 0.25rem;
+    background: var(--primary-color);
+    outline: none;
+    opacity: 0.7;
+    border-radius: 15px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
 
-.to-bottom {
-    transform: translateY(100px);
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: black;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: black;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.switch {
+    position: absolute;
+    display: inline-block;
+    width: 4rem;
+    height: 2.4rem;
+    top: 4.5rem;
+    right: 2rem;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.137);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: solid 1px rgba(0, 0, 0, 0.20);
+}
+
+.toggle:before {
+    position: absolute;
+    content: "";
+    height: 1.7rem;
+    width: 1.7rem;
+    left: 2.6px;
+    bottom: 2.6px;
+    background-color: rgba(15, 15, 15, 0.89);
+    -webkit-transition: .4s;
+    transition: background-color transform .4s;
+}
+
+input:checked+.toggle {
+    background-color: rgba(0, 0, 0, 0.52);
+}
+
+input:focus+.toggle {
+    box-shadow: 0 0 1px rgba(15, 15, 15, 0.89);
+}
+
+input:checked+.toggle:before {
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
+    background-color: rgba(255, 255, 255, 0.979);
+}
+
+.toggle.round {
+    border-radius: 30px;
+}
+
+.toggle.round:before {
+    border-radius: 50%;
+}
+
+@media (min-width:500px) {
+    .main-title {
+        font-size: 6rem;
+    }
+    .main-game-board {
+        height: 50vmin;
+        width: 50vmin;
+    }
+    .slider {
+        width: 40rem;
+    }
 }

@@ -1,5 +1,6 @@
-var tileSize = 100;
-const movementValues = {
+"use strict"
+
+const moveCodes = {
     left: 0,
     up: 1,
     right: 2,
