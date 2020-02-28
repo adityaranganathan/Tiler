@@ -23,8 +23,10 @@ window.onkeydown = function (event) {
 
 }
 
-document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, { passive: false });
+let gameSection = document.querySelector(".main-game-section");
+
+gameSection.addEventListener('touchstart', handleTouchStart, false);
+gameSection.addEventListener('touchmove', handleTouchMove, { passive: false });
 
 var xDown = null;
 var yDown = null;

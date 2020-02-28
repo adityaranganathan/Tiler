@@ -14,7 +14,7 @@ html {
     margin: 0;
     padding: 0;
     height: 100vh;
-    /* -webkit-user-select: none; */
+    height: calc(var(--vh, 1vh) * 100);
     user-select: none;
 }
 
@@ -49,6 +49,7 @@ body {
     text-align: center;
     padding: 0;
     position: relative;
+    /* background-color: aqua; */
 }
 
 .main-game-board {
@@ -102,19 +103,27 @@ body {
 
 .slider-container {
     width: 100%;
+    height:5.25rem;
+    position: relative;
+    margin:auto;
 }
+
 
 .slider {
     -webkit-appearance: none;
     appearance: none;
     width: 70%;
-    height: 0.25rem;
+    height: 20%;
     background: var(--primary-color);
     outline: none;
     opacity: 0.7;
     border-radius: 15px;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    position: relative;
+    cursor: pointer;
+    outline:none;
+    user-select: none;
 }
 
 .slider:hover {
@@ -124,19 +133,22 @@ body {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 3rem;
+    height: 3rem;
     background: black;
     cursor: pointer;
     border-radius: 50%;
+    outline:none;
 }
 
 .slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: black;
+    /* width: 20px; */
+    height: 3rem;
+    width:3rem;;
+    background: rgb(0, 0, 0);
     cursor: pointer;
     border-radius: 50%;
+    outline:none;
 }
 
 .switch {
@@ -146,12 +158,25 @@ body {
     height: 2.4rem;
     top: 4.5rem;
     right: 2rem;
+    
+    user-select: none;
+    outline:none;
+    outline-color: transparent;
+    outline-style: none;
+    -webkit-appearance: none;
 }
 
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
+
+    user-select: none;
+    outline:none;
+    outline-color: transparent;
+    outline-style: none;
+    -webkit-appearance: none;
+    
 }
 
 .toggle {
@@ -165,6 +190,12 @@ body {
     -webkit-transition: .4s;
     transition: .4s;
     border: solid 1px rgba(0, 0, 0, 0.20);
+
+    user-select: none;
+    outline:none;
+    outline-color: transparent;
+    outline-style: none;
+    -webkit-appearance: none;
 }
 
 .toggle:before {
